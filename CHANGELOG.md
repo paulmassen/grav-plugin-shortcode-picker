@@ -1,3 +1,9 @@
+# v1.0.1
+## 11/23/2026
+
+1. [](#improved)
+    * The modal now has the same inner spacing as Admin2's own modals: 24px side margins, a footer separated by a border, and more room between fields. The shortcode list and code fields use a smaller monospace size.
+
 # v1.0.0
 ## 11/23/2026
 

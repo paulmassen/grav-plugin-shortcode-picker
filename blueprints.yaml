@@ -1,7 +1,7 @@
 name: Shortcode Picker
 slug: shortcode-picker
 type: plugin
-version: 1.0.0
+version: 1.0.1
 description: "Adds an Insert shortcode button to the Admin2 Markdown editor toolbar, with a searchable list of every shortcode registered on the site."
 icon: code
 author:

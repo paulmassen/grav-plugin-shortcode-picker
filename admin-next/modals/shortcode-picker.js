@@ -23,7 +23,9 @@ const DEFAULT_LABELS = {
 };
 
 // Shared field styling; colors follow the Admin Next theme (light and dark).
-const FIELD = 'width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--border, #d4d4d8);border-radius:8px;background:var(--background, transparent);color:inherit;font:inherit;';
+const FIELD = 'width:100%;box-sizing:border-box;padding:8px 12px;border:1px solid var(--border, #d4d4d8);border-radius:8px;background:var(--background, transparent);color:inherit;font:inherit;font-size:14px;';
+const LABEL = 'display:flex;flex-direction:column;gap:8px;font-size:14px;';
+const BUTTON = 'padding:0 14px;height:36px;border-radius:8px;font:inherit;font-size:14px;font-weight:500;cursor:pointer;';
 
 function el(tag, props = {}, children = []) {
 	const node = document.createElement(tag);
@@ -72,33 +74,33 @@ if (!customElements.get(TAG)) {
 			const list = el('select', {
 				size: 10,
 				'aria-label': labels.list,
-				style: FIELD + 'padding:4px;font-family:ui-monospace,monospace;',
+				style: FIELD + 'padding:6px;font-family:ui-monospace,monospace;font-size:13px;line-height:1.6;',
 			});
 			const empty = el('p', { text: labels.empty, hidden: true, role: 'status', style: 'margin:0;font-size:13px;opacity:.7;' });
 			const paired = el('input', { type: 'checkbox', checked: true });
-			const pairedLabel = el('label', { style: 'display:flex;gap:8px;align-items:center;font-size:14px;' }, [
+			const pairedLabel = el('label', { style: 'display:flex;gap:10px;align-items:center;font-size:14px;cursor:pointer;' }, [
 				paired,
 				el('span', { text: labels.paired }),
 			]);
 			const params = el('input', {
 				type: 'text',
 				placeholder: labels.paramsHelp,
-				style: FIELD + 'font-family:ui-monospace,monospace;',
+				style: FIELD + 'font-family:ui-monospace,monospace;font-size:13px;',
 			});
 			const preview = el('code', {
 				'aria-live': 'polite',
-				style: 'display:block;padding:8px 10px;border-radius:8px;background:var(--muted, #f4f4f5);white-space:pre-wrap;word-break:break-word;min-height:1.5em;',
+				style: 'display:block;padding:10px 12px;border-radius:8px;background:var(--muted, #f4f4f5);font-family:ui-monospace,monospace;font-size:13px;white-space:pre-wrap;word-break:break-word;min-height:1.5em;',
 			});
 			const insert = el('button', {
 				type: 'button',
 				text: labels.insert,
 				disabled: true,
-				style: 'padding:8px 14px;border-radius:8px;border:0;background:var(--primary, #2563eb);color:var(--primary-foreground, #fff);font:inherit;cursor:pointer;',
+				style: BUTTON + 'border:0;background:var(--primary, #2563eb);color:var(--primary-foreground, #fff);',
 			});
 			const cancel = el('button', {
 				type: 'button',
 				text: labels.cancel,
-				style: 'padding:8px 14px;border-radius:8px;border:1px solid var(--border, #d4d4d8);background:transparent;color:inherit;font:inherit;cursor:pointer;',
+				style: BUTTON + 'border:1px solid var(--border, #d4d4d8);background:transparent;color:inherit;',
 			});
 
 			const all = this.shortcodes;
@@ -107,7 +109,7 @@ if (!customElements.get(TAG)) {
 			const fill = (filter) => {
 				const needle = filter.trim().toLowerCase();
 				const matches = all.filter((name) => name.toLowerCase().includes(needle));
-				list.replaceChildren(...matches.map((name) => el('option', { value: name, text: `[${name}]` })));
+				list.replaceChildren(...matches.map((name) => el('option', { value: name, text: `[${name}]`, style: 'padding:2px 6px;border-radius:4px;' })));
 				empty.hidden = matches.length > 0;
 				list.hidden = matches.length === 0;
 				if (matches.length > 0) list.value = matches[0];
@@ -157,24 +159,25 @@ if (!customElements.get(TAG)) {
 				}
 			});
 
-			const actions = el('div', { style: 'display:flex;justify-content:flex-end;gap:8px;' }, [cancel, insert]);
+			// Admin2 gives custom modal components no inner padding. Body and
+			// footer reproduce the spacing of its built-in modals (24px sides,
+			// footer separated by a border).
+			const actions = el('div', { style: 'display:flex;justify-content:flex-end;gap:8px;padding:16px 24px;border-top:1px solid var(--border, #e4e4e7);' }, [cancel, insert]);
 			this.style.display = 'block';
 			this.replaceChildren(
-				el('div', { style: 'display:flex;flex-direction:column;gap:12px;min-width:320px;' }, [
-					search,
-					list,
-					empty,
+				el('div', { style: 'display:flex;flex-direction:column;gap:20px;padding:20px 24px 24px;min-width:320px;' }, [
+					el('div', { style: 'display:flex;flex-direction:column;gap:8px;' }, [search, list, empty]),
 					pairedLabel,
-					el('label', { style: 'display:flex;flex-direction:column;gap:6px;font-size:14px;' }, [
-						el('span', { text: labels.params }),
+					el('label', { style: LABEL }, [
+						el('span', { text: labels.params, style: 'font-weight:500;' }),
 						params,
 					]),
-					el('div', { style: 'display:flex;flex-direction:column;gap:6px;font-size:14px;' }, [
-						el('span', { text: labels.preview }),
+					el('div', { style: LABEL }, [
+						el('span', { text: labels.preview, style: 'font-weight:500;' }),
 						preview,
 					]),
-					actions,
 				]),
+				actions,
 			);
 
 			fill('');
