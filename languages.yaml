@@ -1,0 +1,29 @@
+en:
+  PLUGIN_SHORTCODE_PICKER:
+    BUTTON_LABEL: "Insert shortcode"
+    MODAL_TITLE: "Insert a shortcode"
+    SEARCH: "Search a shortcode"
+    LIST: "Available shortcodes"
+    EMPTY: "No shortcode matches."
+    PAIRED: "Wraps content ([name]…[/name])"
+    PARAMS: "Attributes (optional)"
+    PARAMS_HELP: "Example: style=\"info\" or class=\"my-style\""
+    CONTENT: "content"
+    PREVIEW: "Preview"
+    INSERT: "Insert"
+    CANCEL: "Cancel"
+
+fr:
+  PLUGIN_SHORTCODE_PICKER:
+    BUTTON_LABEL: "Insérer un shortcode"
+    MODAL_TITLE: "Insérer un shortcode"
+    SEARCH: "Rechercher un shortcode"
+    LIST: "Shortcodes disponibles"
+    EMPTY: "Aucun shortcode ne correspond."
+    PAIRED: "Encadre du contenu ([nom]…[/nom])"
+    PARAMS: "Attributs (facultatif)"
+    PARAMS_HELP: "Exemple : style=\"info\" ou class=\"mon-style\""
+    CONTENT: "contenu"
+    PREVIEW: "Aperçu"
+    INSERT: "Insérer"
+    CANCEL: "Annuler"

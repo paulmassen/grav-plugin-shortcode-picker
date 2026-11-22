@@ -1,0 +1,35 @@
+name: Shortcode Picker
+slug: shortcode-picker
+type: plugin
+version: 1.0.0
+description: "Adds an Insert shortcode button to the Admin2 Markdown editor toolbar, with a searchable list of every shortcode registered on the site."
+icon: code
+author:
+  name: Paul Massendari
+  email: massendari.paul@gmail.com
+homepage: https://github.com/paulmassen/grav-plugin-shortcode-picker
+keywords: grav, plugin, editor, shortcode, toolbar, admin
+bugs: https://github.com/paulmassen/grav-plugin-shortcode-picker/issues
+docs: https://github.com/paulmassen/grav-plugin-shortcode-picker/blob/main/README.md
+license: MIT
+compatibility:
+  grav: ['2.0']
+dependencies:
+  - { name: grav, version: '>=2.0.0' }
+  - { name: api, version: '>=1.0.14' }
+  - { name: admin2, version: '>=2.0.8' }
+  - { name: shortcode-core, version: '>=5.3.0' }
+
+form:
+  validation: loose
+  fields:
+    enabled:
+      type: toggle
+      label: PLUGIN_ADMIN.PLUGIN_STATUS
+      highlight: 1
+      default: 1
+      options:
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
+      validate:
+        type: bool
