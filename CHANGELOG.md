@@ -1,3 +1,13 @@
+# v1.1.0
+## mm/dd/yyyy
+
+1. [](#new)
+    * Shortcode previews: attach a screenshot or animated GIF, a description and a ready-made example to any shortcode from the plugin settings. The picker widens to show the preview next to the list, marks shortcodes that have one, and inserts the example as is.
+    * Hidden shortcodes: choose shortcodes to leave out of the picker list, such as the `#` alias registered by Page TOC.
+2. [](#improved)
+    * The settings form lists the registered shortcodes through an allowlisted `data-options@` provider.
+    * On Grav versions with the dynamic-provider allowlist, the provider is registered with `Blueprint::addAllowedDynamicCallable()`.
+
 # v1.0.1
 ## 11/23/2026
 

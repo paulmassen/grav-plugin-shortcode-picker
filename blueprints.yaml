@@ -1,8 +1,8 @@
 name: Shortcode Picker
 slug: shortcode-picker
 type: plugin
-version: 1.0.1
-description: "Adds an Insert shortcode button to the Admin2 Markdown editor toolbar, with a searchable list of every shortcode registered on the site."
+version: 1.1.0
+description: "Adds an Insert shortcode button to the Admin2 Markdown editor toolbar, with a searchable list of every shortcode registered on the site, optional previews (screenshots or GIFs) and hidden shortcodes."
 icon: code
 author:
   name: Paul Massendari
@@ -33,3 +33,65 @@ form:
         0: PLUGIN_ADMIN.DISABLED
       validate:
         type: bool
+
+    list_section:
+      type: section
+      title: PLUGIN_SHORTCODE_PICKER.SETTINGS.LIST_SECTION
+      underline: true
+
+    hidden:
+      type: select
+      multiple: true
+      size: large
+      label: PLUGIN_SHORTCODE_PICKER.SETTINGS.HIDDEN
+      help: PLUGIN_SHORTCODE_PICKER.SETTINGS.HIDDEN_HELP
+      data-options@: 'Grav\Plugin\ShortcodePickerPlugin::shortcodeOptions'
+      classes: fancy
+      validate:
+        type: commalist
+
+    previews_section:
+      type: section
+      title: PLUGIN_SHORTCODE_PICKER.SETTINGS.PREVIEWS_SECTION
+      text: PLUGIN_SHORTCODE_PICKER.SETTINGS.PREVIEWS_TEXT
+      underline: true
+
+    previews:
+      type: list
+      style: vertical
+      label: PLUGIN_SHORTCODE_PICKER.SETTINGS.PREVIEWS
+      help: PLUGIN_SHORTCODE_PICKER.SETTINGS.PREVIEWS_HELP
+      btnLabel: PLUGIN_SHORTCODE_PICKER.SETTINGS.ADD_PREVIEW
+      collapsed: true
+      fields:
+        .shortcode:
+          type: select
+          label: PLUGIN_SHORTCODE_PICKER.SETTINGS.SHORTCODE
+          help: PLUGIN_SHORTCODE_PICKER.SETTINGS.SHORTCODE_HELP
+          data-options@: 'Grav\Plugin\ShortcodePickerPlugin::shortcodeOptions'
+          validate:
+            required: true
+        .image:
+          type: file
+          label: PLUGIN_SHORTCODE_PICKER.SETTINGS.IMAGE
+          help: PLUGIN_SHORTCODE_PICKER.SETTINGS.IMAGE_HELP
+          destination: 'user://media/shortcode-picker'
+          multiple: false
+          avoid_overwriting: true
+          accept:
+            - image/png
+            - image/jpeg
+            - image/gif
+            - image/webp
+            - image/avif
+        .description:
+          type: textarea
+          rows: 2
+          label: PLUGIN_SHORTCODE_PICKER.SETTINGS.DESCRIPTION
+          help: PLUGIN_SHORTCODE_PICKER.SETTINGS.DESCRIPTION_HELP
+        .example:
+          type: textarea
+          rows: 3
+          label: PLUGIN_SHORTCODE_PICKER.SETTINGS.EXAMPLE
+          help: PLUGIN_SHORTCODE_PICKER.SETTINGS.EXAMPLE_HELP
+          placeholder: '[notice style="info"]Text[/notice]'

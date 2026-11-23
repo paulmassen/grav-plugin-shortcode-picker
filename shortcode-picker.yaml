@@ -1,1 +1,6 @@
 enabled: true
+# Shortcode names left out of the picker list, e.g. [ '#', anchor ].
+hidden: []
+# Preview shown when a shortcode is selected in the picker.
+# Each entry: shortcode (name), image (uploaded file), description, example.
+previews: []
